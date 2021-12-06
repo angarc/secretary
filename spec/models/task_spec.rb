@@ -71,6 +71,16 @@ RSpec.describe Task, type: :model do
     expect(@task).to_not be_valid
   end
 
+  it 'is not valid with an incorrect duration format' do
+    @task.duration = '03:3'
+    expect(@task).to_not be_valid
+  end
+
+  it 'is not valid with an incorrect duration format' do
+    @task.duration = '3:3'
+    expect(@task).to_not be_valid
+  end
+
   it 'is valid with a correct duration format' do
     @task.duration = '03:30'
     expect(@task).to be_valid
