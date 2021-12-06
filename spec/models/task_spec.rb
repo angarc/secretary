@@ -10,8 +10,8 @@ RSpec.describe Task, type: :model do
     expect(@task).to be_valid
   end
 
-  it "is not valid without a name" do
-    @task.name = ""
+  it "is not valid without a title" do
+    @task.title = ""
     expect(@task).to_not be_valid
   end
 
@@ -51,8 +51,35 @@ RSpec.describe Task, type: :model do
     expect(@task).to_not be_valid
   end
 
+  it "it is not valid without a duration" do
+    @task.duration = ""
+    expect(@task).to_not be_valid
+  end
+
   it "is not valid without a user" do
     @task.user = nil
     expect(@task).to_not be_valid
+  end
+
+  it 'is not valid with a deadline that has already passed' do
+    @task.deadline = DateTime.now - 1.day
+    expect(@task).to_not be_valid
+  end
+
+  it 'is not valid with an incorrect duration format' do
+    @task.duration = '3:30'
+    expect(@task).to_not be_valid
+  end
+
+  it 'is valid with a correct duration format' do
+    @task.duration = '03:30'
+    expect(@task).to be_valid
+  end
+
+  it 'parses duration hours and minutes from duration string correctly' do
+    @task.duration = '05:15'
+    @task.extract_duration_hours_and_minutes
+    expect(@task.duration_hours).to eq 5
+    expect(@task.duration_minutes).to eq 15
   end
 end

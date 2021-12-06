@@ -13,3 +13,24 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
+import { Notyf } from "notyf"
+import "../stylesheets/dashboard.scss"
+
+document.addEventListener('DOMContentLoaded', function () {
+  var notyf = new Notyf({position: {x: 'right', y: 'top'}});
+  const toast = (type, message) => {
+    if (type === "success") {
+      notyf.success(message);
+    } else if (type === "danger") {
+      notyf.error(message);
+    }
+  }
+
+  window.toast = toast;
+});
+
+
+
+
+
+
