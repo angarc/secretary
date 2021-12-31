@@ -1,0 +1,32 @@
+<h1>My Tasks</h1>
+
+<div class='list-group mt-4'>
+  <%= render @tasks %>
+
+
+  <%= simple_form_for Task.new, 
+                      url: dashboard_tasks_path(format: :js), 
+                      html: {
+                        class: 'list-group-item align-items-center',
+                        data: {controller: 'task-form'}
+                      }, 
+                      remote: true do |f| %>
+    <div class='row'>
+      <div class='col-lg-3'>
+        <%= f.input :title, label: false, placeholder: 'Title' %>
+      </div>
+
+      <div class='col-lg-3'>
+        <%= f.input :deadline, as: :string, label: false, placeholder: 'Deadline', input_html: {data: {task_form_target: 'deadlineInput'}} %>
+      </div>
+
+      <div class='col-lg-3'>
+        <%= f.input :duration, label: false, placeholder: 'Duration', input_html: {data: {task_form_target: 'durationInput'}} %>
+      </div>
+
+      <div class='col-lg-3'>
+        <%= f.submit 'Add', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

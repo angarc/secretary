@@ -1,6 +1,0 @@
-<%= simple_form_for @task, url: dashboard_tasks_path(format: :js), remote: true do |f| %>
-  <%= f.input :title %>
-  <%= f.input :deadline, as: :string %>
-  <%= f.input :duration %>
-  <%= f.submit 'Add', class: 'btn btn-primary' %>
-<% end %>

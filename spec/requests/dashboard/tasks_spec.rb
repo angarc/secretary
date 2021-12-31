@@ -7,18 +7,18 @@ RSpec.describe "Dashboard::Tasks", type: :request do
       sign_in @user
     end
 
-    describe "GET /new" do
+    describe "GET /index" do
       it "should respond with status code 200" do
-        get new_dashboard_task_path
+        get dashboard_tasks_path
         expect(response).to have_http_status(200)
       end
     end
   end
 
   context 'when not logged in' do
-    describe "GET /new" do
+    describe "GET /index" do
       it "should redirect to login page" do
-        get new_dashboard_task_path
+        get dashboard_tasks_path
         expect(response).to redirect_to(new_user_session_path)
       end
     end

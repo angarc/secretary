@@ -5,7 +5,7 @@ RSpec.feature "Tasks", type: :feature do
     before(:each) do
       @user = create(:user)
       sign_in @user
-      visit new_dashboard_task_path
+      visit dashboard_tasks_path
     end
 
     scenario 'should be successful' do

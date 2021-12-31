@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, {
     controllers: {
-      registrations: 'users/registrations'
+      registrations: 'users/registrations',
+      omniauth_callbacks: 'users/omniauth_callbacks'
     }
   }
   root to: "home#index"
@@ -10,6 +11,6 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index', as: :dashboard
   end
   namespace :dashboard do
-    resources :tasks
+    resources :tasks, except: [:new, :edit]
   end
 end

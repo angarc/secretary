@@ -16,6 +16,7 @@ import "controllers"
 import { Notyf } from "notyf"
 import "../stylesheets/dashboard.scss"
 
+
 document.addEventListener('DOMContentLoaded', function () {
   var notyf = new Notyf({position: {x: 'right', y: 'top'}});
   const toast = (type, message) => {

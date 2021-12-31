@@ -1,7 +1,9 @@
 <% if @task.errors.count == 0 %>
   toast("success", "Task was successfully created.")
   var form = document.getElementById('new_task')
-  form.reset();
+
+  form.insertAdjacentHTML("beforebegin", "<%= j render @task %>");
+  form.reset()
 <% else %>
   toast("danger", "<%= @task.errors.full_messages.to_sentence %>")
 <% end %>
