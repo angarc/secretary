@@ -8,7 +8,6 @@ class Dashboard::TasksController < Dashboard::BaseController
     @task.extract_duration_hours_and_minutes
     @task.save 
 
-    @tasks = current_user.tasks
     respond_to do |format|
       format.js
     end

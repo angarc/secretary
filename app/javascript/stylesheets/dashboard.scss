@@ -1,3 +1,10 @@
+$primary: #7158e2;
+
+
 @import '~bootstrap/scss/bootstrap';
 @import "notyf/notyf.min";
 @import "~flatpickr/dist/flatpickr";
+
+body {
+  background-color: #f2f2f2;
+}

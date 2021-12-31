@@ -4,6 +4,9 @@
 
   form.insertAdjacentHTML("beforebegin", "<%= j render @task %>");
   form.reset()
+
+  const input = document.getElementById('task_title')
+  input.focus();
 <% else %>
   toast("danger", "<%= @task.errors.full_messages.to_sentence %>")
 <% end %>

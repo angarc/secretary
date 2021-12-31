@@ -5,11 +5,18 @@
     </div>
 
     <div class='col-lg-4'>
-      <strong>Deadline: </strong><%= task.deadline %>
+      <strong>Deadline: </strong><%= task.deadline.to_formatted_s(:readable_datetime) %>
     </div>
 
     <div class='col-lg-4'>
-      <strong>Title: </strong><%= task.duration %>
+      <strong>Duration: </strong>
+      <% if task.duration_hours > 0 %>
+        <%= pluralize(task.duration_hours, "Hour") %>
+      <% end %>
+
+      <% if task.duration_minutes > 0 %>
+        <%= pluralize(task.duration_minutes, "Minute") %>
+      <% end %>
     </div>
   </div>
 </div>

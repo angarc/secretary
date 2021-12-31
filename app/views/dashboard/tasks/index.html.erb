@@ -1,4 +1,4 @@
-<h1>My Tasks</h1>
+<h1 class='mt-4'>My Tasks</h1>
 
 <div class='list-group mt-4'>
   <%= render @tasks %>
@@ -11,21 +11,11 @@
                         data: {controller: 'task-form'}
                       }, 
                       remote: true do |f| %>
+
     <div class='row'>
+      <%= render 'form', f: f %>
       <div class='col-lg-3'>
-        <%= f.input :title, label: false, placeholder: 'Title' %>
-      </div>
-
-      <div class='col-lg-3'>
-        <%= f.input :deadline, as: :string, label: false, placeholder: 'Deadline', input_html: {data: {task_form_target: 'deadlineInput'}} %>
-      </div>
-
-      <div class='col-lg-3'>
-        <%= f.input :duration, label: false, placeholder: 'Duration', input_html: {data: {task_form_target: 'durationInput'}} %>
-      </div>
-
-      <div class='col-lg-3'>
-        <%= f.submit 'Add', class: 'btn btn-primary' %>
+        <%= f.submit 'Add', class: 'btn btn-primary w-100' %>
       </div>
     </div>
   <% end %>
