@@ -1,22 +1,49 @@
-<div class='list-group-item'>
-  <div class='row'>
-    <div class='col-lg-4'>
-      <strong>Title: </strong><%= task.title %>
-    </div>
+<div class='row task-listing-item' data-controller='task-listing' data-id='task-<%= task.id %>'>
+  <template data-task-listing-target='editForm'>
+    <%= simple_form_for task, 
+                        url: dashboard_task_path(task), 
+                        html: {
+                          data: {controller: 'task-form'}
+                        },
+                        remote: true do |f| %>
+      <div class='row'>
+        <%= render 'form', f: f %>
+        <div class='col-lg-3'>
+          <%= f.submit "Save", class: 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+    <% end %>
+  </template>
 
-    <div class='col-lg-4'>
-      <strong>Deadline: </strong><%= task.deadline.to_formatted_s(:readable_datetime) %>
-    </div>
+  <div class='col-lg-10 u-full-height'>
+    <div class='list-group-item' data-task-listing-target='container'>
+      <div class='row'>
+        <div class='col-lg-4'>
+          <strong>Title: </strong><%= task.title %>
+        </div>
 
-    <div class='col-lg-4'>
-      <strong>Duration: </strong>
-      <% if task.duration_hours > 0 %>
-        <%= pluralize(task.duration_hours, "Hour") %>
-      <% end %>
+        <div class='col-lg-4'>
+          <strong>Deadline: </strong><%= task.deadline.to_formatted_s(:readable_datetime) %>
+        </div>
 
-      <% if task.duration_minutes > 0 %>
-        <%= pluralize(task.duration_minutes, "Minute") %>
-      <% end %>
+        <div class='col-lg-4'>
+          <strong>Duration: </strong>
+          <% if task.duration_hours > 0 %>
+            <%= pluralize(task.duration_hours, "Hour") %>
+          <% end %>
+
+          <% if task.duration_minutes > 0 %>
+            <%= pluralize(task.duration_minutes, "Minute") %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class='col-lg-2 u-full-height center-vertically-row'>
+    <button id='task-<%= task.id %>-edit-btn' class='btn btn-primary btn-sm' data-action='click->task-listing#editButtonPressed'>Edit</button>
+    <%= link_to 'Delete', dashboard_task_path(task), method: :delete, class: 'btn btn-primary btn-sm ms-1', remote: true %>
+  </div>
 </div>
+
+

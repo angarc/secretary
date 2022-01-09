@@ -1,0 +1,8 @@
+<% if @task.errors.count == 0 %>
+  toast("success", "Task was successfully updated.")
+  var taskListing = document.querySelector("[data-id='task-<%= @task.id %>']")
+  taskListing.insertAdjacentHTML("beforebegin", "<%= j render @task %>")
+  taskListing.parentNode.removeChild(taskListing)
+<% else %>
+  toast("danger", "<%= @task.errors.full_messages.to_sentence %>")
+<% end %>

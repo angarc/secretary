@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Tasks", type: :feature do
-  context 'create new task' do
+  context 'on create' do
     before(:each) do
       @user = create(:user)
       sign_in @user
@@ -16,6 +16,21 @@ RSpec.feature "Tasks", type: :feature do
       end
       click_button 'Add'
       expect(page).to have_content 'Task was successfully created.'
+    end
+  end
+
+  context 'on update' do
+    before(:each) do 
+      @user = create(:user)
+      sign_in @user
+      @task = create(:task, user: @user)
+    end
+
+    @javascript
+    scenario 'should be successful' do
+      visit dashboard_tasks_path
+      find("#task-#{@task.id}-edit-btn").click
+      expect(page).to have_content 'Task was successfully updated.'
     end
   end
 end

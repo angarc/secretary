@@ -1,0 +1,4 @@
+toast("success", "Task was successfully deleted.")
+var taskListing = document.querySelector("[data-id='task-<%= @task.id %>']")
+taskListing.parentNode.removeChild(taskListing)
+
